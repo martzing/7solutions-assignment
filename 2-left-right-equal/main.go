@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"errors"
 	"fmt"
+	"log"
 	"os"
 	"strconv"
 	"strings"
@@ -16,8 +17,7 @@ func main() {
 
 		input, err := consoleReader.ReadString('\n')
 		if err != nil {
-			fmt.Println(err.Error())
-			os.Exit(0)
+			log.Fatal(err)
 		}
 
 		trimInput := strings.TrimSuffix(input, "\n")
