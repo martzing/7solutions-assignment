@@ -14,21 +14,26 @@ func main() {
 		consoleReader := bufio.NewReader(os.Stdin)
 		fmt.Print("Input: ")
 
-		input, _ := consoleReader.ReadString('\n')
+		input, err := consoleReader.ReadString('\n')
+		if err != nil {
+			fmt.Println(err.Error())
+			os.Exit(0)
+		}
+
 		trimInput := strings.TrimSuffix(input, "\n")
-		if strings.HasPrefix(trimInput, "bye") {
+		if strings.HasPrefix(trimInput, "exit") {
 			fmt.Println("Good bye!")
 			os.Exit(0)
 		}
 
-		err := validate(trimInput)
-		if err != nil {
-			fmt.Println(err.Error())
+		_err := validate(trimInput)
+		if _err != nil {
+			fmt.Println(_err.Error())
 			continue
 		}
 
-		sum := solution(trimInput)
-		fmt.Println("Result: ", sum)
+		result := solution(trimInput)
+		fmt.Println("Result: ", result)
 	}
 }
 
