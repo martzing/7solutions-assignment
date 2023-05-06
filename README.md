@@ -1,1 +1,0 @@
-# 7solutions-assignment
