@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option go_package = "github.com/martzing/7solutions-assignment/3-pie-fire-dire"; 
+
+import "google/api/annotations.proto";
+
+message BeefSummaryRequest{}
+
+message BeefSummaryResponse{
+    map<string, int32> beef = 1;
+}
+
+service BeefService {
+    rpc BeefSummary(BeefSummaryRequest) returns (BeefSummaryResponse){
+        option (google.api.http) = {
+            get: "/beef/summary"
+        };
+    }
+}
