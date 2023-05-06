@@ -2,6 +2,7 @@ package service
 
 import (
 	"bytes"
+	"errors"
 	"io"
 	"net/http"
 
@@ -12,6 +13,9 @@ func GetBeefSummary() (map[string]int32, error) {
 	resp, err := http.Get(*configs.BeefUrl)
 	if err != nil {
 		return nil, err
+	}
+	if resp.StatusCode != 200 {
+		return nil, errors.New(http.StatusText(resp.StatusCode))
 	}
 	defer resp.Body.Close()
 
