@@ -50,6 +50,10 @@ func solution(str string) string {
 				arr = append(arr, 1)
 				arr = append(arr, 2)
 				last = 2
+			} else {
+				arr = append(arr, 0)
+				arr = append(arr, 0)
+				last = 0
 			}
 		} else {
 			if string(s) == "L" {
@@ -70,13 +74,20 @@ func solution(str string) string {
 		min = min * (-1)
 	}
 
+	pre := ""
+	for arr[0] == 0 {
+		arr = arr[1:]
+		pre += "0"
+
+	}
+
 	chrArr := []string{}
 	for i := range arr {
 		number := arr[i] + min
 		text := strconv.Itoa(number)
 		chrArr = append(chrArr, text)
 	}
-	return strings.Join(chrArr, "")
+	return pre + strings.Join(chrArr, "")
 }
 
 func min(arr []int) int {
